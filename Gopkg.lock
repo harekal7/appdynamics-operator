@@ -10,6 +10,22 @@
   version = "v0.37.4"
 
 [[projects]]
+  digest = "1:a0d62bc4c6e8305b933cfdb6f548877dbaa147aed76f8b6588cf51feeef74d24"
+  name = "github.com/Appdynamics/appdynamics-operator"
+  packages = [
+    "pkg/apis",
+    "pkg/apis/appdynamics/v1alpha1",
+    "pkg/controller",
+    "pkg/controller/adam",
+    "pkg/controller/clusteragent",
+    "pkg/controller/infraviz",
+    "version",
+  ]
+  pruneopts = "NT"
+  revision = "34373bd86506952ac1af2a5b8c98a9704642dede"
+  version = "v0.5.3"
+
+[[projects]]
   digest = "1:0a111edd8693fd977f42a0c4f199a0efb13c20aec9da99ad8830c7bb6a87e8d6"
   name = "github.com/PuerkitoBio/purell"
   packages = ["."]
@@ -679,6 +695,7 @@
     "util/integer",
     "util/jsonpath",
     "util/retry",
+    "util/workqueue",
   ]
   pruneopts = "NT"
   revision = "d082d5923d3cc0bfbb066ee5fbdea3d0ca79acf8"
@@ -764,15 +781,26 @@
     "pkg/client",
     "pkg/client/apiutil",
     "pkg/client/config",
+    "pkg/controller",
+    "pkg/controller/controllerutil",
+    "pkg/event",
+    "pkg/handler",
+    "pkg/internal/controller",
+    "pkg/internal/controller/metrics",
     "pkg/internal/recorder",
     "pkg/leaderelection",
     "pkg/manager",
     "pkg/metrics",
     "pkg/patch",
+    "pkg/predicate",
+    "pkg/reconcile",
     "pkg/recorder",
     "pkg/runtime/inject",
     "pkg/runtime/log",
+    "pkg/runtime/scheme",
     "pkg/runtime/signals",
+    "pkg/source",
+    "pkg/source/internal",
     "pkg/webhook/admission",
     "pkg/webhook/admission/types",
     "pkg/webhook/types",
@@ -785,11 +813,27 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/Appdynamics/appdynamics-operator/pkg/apis",
+    "github.com/Appdynamics/appdynamics-operator/pkg/apis/appdynamics/v1alpha1",
+    "github.com/Appdynamics/appdynamics-operator/pkg/controller",
+    "github.com/Appdynamics/appdynamics-operator/pkg/controller/adam",
+    "github.com/Appdynamics/appdynamics-operator/pkg/controller/clusteragent",
+    "github.com/Appdynamics/appdynamics-operator/pkg/controller/infraviz",
+    "github.com/Appdynamics/appdynamics-operator/version",
+    "github.com/go-openapi/spec",
     "github.com/operator-framework/operator-sdk/pkg/k8sutil",
     "github.com/operator-framework/operator-sdk/pkg/leader",
     "github.com/operator-framework/operator-sdk/pkg/ready",
     "github.com/operator-framework/operator-sdk/version",
+    "k8s.io/api/apps/v1",
+    "k8s.io/api/core/v1",
+    "k8s.io/apimachinery/pkg/api/errors",
+    "k8s.io/apimachinery/pkg/api/resource",
+    "k8s.io/apimachinery/pkg/apis/meta/v1",
+    "k8s.io/apimachinery/pkg/labels",
     "k8s.io/apimachinery/pkg/runtime",
+    "k8s.io/apimachinery/pkg/runtime/schema",
+    "k8s.io/apimachinery/pkg/types",
     "k8s.io/client-go/plugin/pkg/client/auth/gcp",
     "k8s.io/code-generator/cmd/client-gen",
     "k8s.io/code-generator/cmd/conversion-gen",
@@ -799,10 +843,18 @@
     "k8s.io/code-generator/cmd/lister-gen",
     "k8s.io/code-generator/cmd/openapi-gen",
     "k8s.io/gengo/args",
+    "k8s.io/kube-openapi/pkg/common",
+    "sigs.k8s.io/controller-runtime/pkg/client",
     "sigs.k8s.io/controller-runtime/pkg/client/config",
+    "sigs.k8s.io/controller-runtime/pkg/controller",
+    "sigs.k8s.io/controller-runtime/pkg/controller/controllerutil",
+    "sigs.k8s.io/controller-runtime/pkg/handler",
     "sigs.k8s.io/controller-runtime/pkg/manager",
+    "sigs.k8s.io/controller-runtime/pkg/reconcile",
     "sigs.k8s.io/controller-runtime/pkg/runtime/log",
+    "sigs.k8s.io/controller-runtime/pkg/runtime/scheme",
     "sigs.k8s.io/controller-runtime/pkg/runtime/signals",
+    "sigs.k8s.io/controller-runtime/pkg/source",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
